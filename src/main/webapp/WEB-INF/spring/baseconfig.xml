@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+        http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="no">
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors" ref="localeChangeInterceptor"/>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+
+    <context:annotation-config/>
+    <context:component-scan base-package="org.yestech.admin.controller"/>
+
+
+    <!--<dwr:controller id="dwrController" debug="true"/>-->
+    <!--<dwr:configuration/>-->
+
+    <!--<bean id="beanUrlMapping"-->
+    <!--class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"-->
+    <!--p:order="0" />-->
+
+    <!--<bean id="dwrUrlMappings"-->
+    <!--class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"-->
+    <!--p:order="1">-->
+    <!--<property name="urlMap">-->
+    <!--<util:map>-->
+    <!--<entry key="/engine.js" value-ref="dwrController"/>-->
+    <!--<entry key="/interface.js" value-ref="dwrController"/>-->
+    <!--<entry key="/call/**" value-ref="dwrController"/>-->
+    <!--<entry key="/interface/**" value-ref="dwrController"/>-->
+    <!--</util:map>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+
+    <!-- the application context definition for the springapp DispatcherServlet -->
+    <!--<bean id="tilesLayout"-->
+    <!--class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">-->
+    <!--<property name="definitions">-->
+    <!--<list>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-general.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-common.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-security.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-search.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-evidence.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-subscriber.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-reputation.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-reports.xml</value>-->
+    <!--<value>/WEB-INF/tiles/tiles-defs-businessrules.xml</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/adminConsoleDs" />-->
+
+    <!--<bean id="tilesConfigurer"-->
+    <!--class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">-->
+    <!--<property name="definitions">-->
+    <!--<list>-->
+    <!--<value>/WEB-INF/tiles-defs/templates.xml</value>-->
+    <!--</list>-->
+    <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="dynamicTilesViewResolver"-->
+    <!--class="org.springframework.web.servlet.view.UrlBasedViewResolver">-->
+    <!--<property name="viewClass" value="org.springbyexample.web.servlet.view.tiles2.DynamicTilesView"/>-->
+    <!--<property name="prefix" value="/WEB-INF/jsp/"/>-->
+    <!--<property name="suffix" value=".jsp"/>-->
+    <!--</bean>-->
+
+    <!-- Declare the Interceptor -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="locale"/>
+    </bean>
+
+    <!-- Declare the Resolver -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="useCodeAsDefaultMessage" value="true"/>
+        <property name="basenames">
+            <list>
+                <value>classpath:/localization/About_messages</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--<bean id="viewResolver"-->
+    <!--class="org.springframework.web.servlet.view.UrlBasedViewResolver">-->
+    <!--<property name="viewClass"-->
+    <!--value="org.springframework.web.servlet.view.tiles2.TilesView"/>-->
+    <!--</bean>-->
+
+</beans>
