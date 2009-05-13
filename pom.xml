@@ -9,7 +9,7 @@
     <url>http://yestech.org</url>
     <description>Cloud enabled Administration Web App</description>
     <properties>
-        <spring.version>2.5.6</spring.version>
+        <spring.version>2.5.6.SEC01</spring.version>
     </properties>
     <dependencies>
         <dependency>
