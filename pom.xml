@@ -10,6 +10,7 @@
     <description>Cloud enabled Administration Web App</description>
     <properties>
         <spring.version>2.5.6.SEC01</spring.version>
+        <slf4j.version>1.5.6</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -30,6 +31,12 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>3.3.1.GA</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -80,6 +87,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
         <!--
         end Spring
@@ -156,4 +168,5 @@
             <name>Yestech snapshots repository</name>
             <url>http://repo.yestech.org/content/repositories/snapshots</url>
         </snapshotRepository>
-    </distributionManagement></project>
+    </distributionManagement>
+</project>
