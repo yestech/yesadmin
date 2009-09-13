@@ -7,11 +7,12 @@
     <packaging>war</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <name>YES Admin</name>
-    <url>http://yestech.org</url>
+    <url>http://yestech.org/sites/yesadmin/</url>
     <description>Cloud enabled Administration Web App</description>
     <scm>
-        <connection>scm:git:http://github.com/yestech/yesadmin/tree/master</connection>
-        <developerConnection>scm:git:http://github.com/yestech/yesadmin/tree/master</developerConnection>
+        <connection>scm:git:git://github.com/yestech/yesadmin.git</connection>
+        <developerConnection>scm:git:git://github.com/yestech/yesadmin.git</developerConnection>
+        <url>http://github.com/yestech/yesadmin/tree/master</url>
     </scm>
     <organization>
         <name>YES Technology Association</name>
@@ -28,7 +29,7 @@
         <developer>
             <id>artie</id>
             <name>Artie Copeland</name>
-            <email>artie@yestech.org</email>
+            <email>http://mailhide.recaptcha.net/d?k=013dif-8KmF_OR5-Zs49rn9w==&amp;c=ZDwNN9ZwWomHpMAaLEW0Rt3HB4aATO6AM20eeZNxLS4=</email>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -192,6 +193,25 @@
             </build>
         </profile>
     </profiles>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.6</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.4.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.1.2</version>
+            </plugin>
+        </plugins>
+    </reporting>
     <repositories>
         <repository>
             <id>yestech-snapshots</id>
@@ -219,6 +239,10 @@
         </pluginRepository>
     </pluginRepositories>
     <distributionManagement>
+        <site>
+            <id>yestech.org</id>
+            <url>file:////wwwhome/yestech.org/sites/${artifactId}</url>
+        </site>
         <repository>
             <id>yestech-releases</id>
             <name>YES Technology Release Repository</name>
