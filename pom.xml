@@ -9,6 +9,11 @@
     <name>YES Admin</name>
     <url>http://yestech.org/sites/yesadmin/</url>
     <description>Cloud enabled Administration Web App</description>
+    <parent>
+        <groupId>org.yestech</groupId>
+        <artifactId>yessuperpom</artifactId>
+        <version>1.1.0</version>
+    </parent>
     <scm>
         <connection>scm:git:git://github.com/yestech/yesadmin.git</connection>
         <developerConnection>scm:git:git://github.com/yestech/yesadmin.git</developerConnection>
@@ -38,15 +43,9 @@
     </developers>
     <properties>
         <spring.version>2.5.6.SEC01</spring.version>
-        <slf4j.version>1.5.6</slf4j.version>
+        <slf4j.version>1.5.8</slf4j.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.4</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
@@ -85,27 +84,9 @@
             <version>2.0.2</version>
         </dependency>
 
-        <!-- Servlet & Jsp -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
         <!--
         start Spring
         -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -116,26 +97,23 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!--
+        end Spring
+        -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!--
-        end Spring
-        -->
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>yesadmin</finalName>
         <plugins>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
@@ -146,112 +124,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.0-alpha-4</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.4.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.1.2</version>
-            </plugin>
-        </plugins>
-    </reporting>
-    <repositories>
-        <repository>
-            <id>yestech-snapshots</id>
-            <name>YES Technology Snapshot Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/github-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>yestech-snapshots</id>
-            <name>YES Technology Snapshot Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/github-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <site>
-            <id>yestech.org</id>
-            <url>file:////wwwhome/yestech.org/sites/${artifactId}</url>
-        </site>
-        <repository>
-            <id>yestech-releases</id>
-            <name>YES Technology Release Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/github-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>yestech-snapshots</id>
-            <name>YES Technology Snapshot Repository</name>
-            <url>http://oss.sonatype.org/content/repositories/github-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
