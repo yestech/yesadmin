@@ -12,11 +12,11 @@
     <parent>
         <groupId>org.yestech</groupId>
         <artifactId>yessuperpom</artifactId>
-        <version>1.1.0</version>
+        <version>1.3.0</version>
     </parent>
     <scm>
-        <connection>scm:git:git://github.com/yestech/yesadmin.git</connection>
-        <developerConnection>scm:git:git://github.com/yestech/yesadmin.git</developerConnection>
+        <connection>scm:git:git@github.com:yestech/yesadmin.git</connection>
+        <developerConnection>scm:git:git@github.com:yestech/yesadmin.git</developerConnection>
         <url>http://github.com/yestech/yesadmin/tree/master</url>
     </scm>
     <organization>
@@ -41,15 +41,19 @@
             </roles>
         </developer>
     </developers>
+    <ciManagement>
+        <url>http://ci.yestech.org</url>
+        <system>hudson</system>
+    </ciManagement>
     <properties>
         <spring.version>2.5.6.SEC01</spring.version>
-        <slf4j.version>1.5.8</slf4j.version>
+        <slf4j.version>1.5.11</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>1.5.0</version>
+            <artifactId>ehcache-core</artifactId>
+            <version>2.2.0</version>
         </dependency>
         <!--
         start hibernate
@@ -87,6 +91,11 @@
         <!--
         start Spring
         -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
